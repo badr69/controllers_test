@@ -5,7 +5,7 @@ __pycache__/
 .idea/
 config.py
 
-schema.sql
+
 # Byte-compiled / optimized / DLL files
 
 *.py[cod]
