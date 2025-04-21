@@ -1,19 +1,16 @@
-from flask import Flask
-from app.routes.auth_routes import auth_bp
+from flask import Flask, render_template
+from app.models.db import Connexion
+from app.routes.user_routes import user_bp
+app = Flask(__name__)
+app.register_blueprint(user_bp)
 
+@app.route('/')
+def index():
+    return "Bienvenue dans l'application de covoiturage!"
+@app.route('/register')
+def register():
+    return render_template("register.html")
 
-# Importer les autres blueprints
-
-def create_app():
-    app = Flask(__name__)
-    app.secret_key = 'your_secret_key'
-
-    app.register_blueprint(auth_bp)
-    # Register other routes...
-
-    return app
-
-
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True)
+@app.teardown_appcontext
+def close_db_connection(exception=None):
+    Connexion.close_all_connections()
