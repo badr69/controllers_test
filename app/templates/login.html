@@ -1,7 +1,58 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block body %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ 'danger' if category == 'error' else category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+
+
+    <form action="{{ url_for('login') }}" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">email d'utilisateur</label>
+                <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </div>
+    </form>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block title %}Connexion{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<h2>Connexion</h2>#}
+{#<form method="POST">#}
+{#    <div class="mb-3">#}
+{#        <label for="username" class="form-label">Nom d'utilisateur</label>#}
+{#        <input type="text" class="form-control" id="username" name="username" required>#}
+{#    </div>#}
+{#    <div class="mb-3">#}
+{#        <label for="password" class="form-label">Mot de passe</label>#}
+{#        <input type="password" class="form-control" id="password" name="password" required>#}
+{#    </div>#}
+{#    <button type="submit" class="btn btn-primary">Se connecter</button>#}
+{#</form>#}
+{#{% endblock %}#}

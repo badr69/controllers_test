@@ -4,6 +4,7 @@
 __pycache__/
 .idea/
 config.py
+db.py
 
 
 # Byte-compiled / optimized / DLL files
